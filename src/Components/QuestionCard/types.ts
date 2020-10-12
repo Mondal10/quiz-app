@@ -9,3 +9,8 @@ export type QuestionProps = {
   questionNum: number;
   totalQuestions: number;
 };
+
+export type ButtonWrapperProps = {
+  correct: boolean;
+  userClicked: boolean;
+};
