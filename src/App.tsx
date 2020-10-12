@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './App.css';
 
 // API
 import { fetchQuizData } from './API/API';
@@ -11,6 +10,9 @@ import { QuestionState, AnswerObject } from './Types/types';
 // Components
 import Button from './Components/Button/Button';
 import QuestionCard from './Components/QuestionCard/QuestionCard';
+
+// Styles
+import { GlobalStyle, Wrapper } from './Styles/App.styles';
 
 // Constants
 const TOTAL_QUESTIONS = 10;
@@ -64,7 +66,7 @@ const App = () => {
     }
   }
 
-  /**
+  /**Wrapper
    * Move on to the next question if not the last question
    */
   const nextQuestion = () => {
@@ -78,34 +80,37 @@ const App = () => {
   }
 
   return (
-    <div className='App'>
-      <h1>Quiz</h1>
-      {
-        gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-          <Button btnClass='start' text='Start' value='' disabled={false} callback={startQuiz} />
-        ) : null
-      }
-      {!gameOver ? (<p className='score'>Score: {score}</p>) : null}
-      {loading && <p>Loading Question ...</p>}
-      {
-        !loading && !gameOver && (
-          <QuestionCard
-            questionNum={number + 1}
-            totalQuestions={TOTAL_QUESTIONS}
-            question={questions[number].question}
-            answers={questions[number].answers}
-            userAnswer={userAnswers ? userAnswers[number] : undefined}
-            callback={checkAnswer}
-          />
-        )
-      }
-      {
-        !loading && !gameOver && userAnswers.length === number + 1 && number !== TOTAL_QUESTIONS - 1 ?
-          (
-            <Button btnClass='next' text='Next Question' value='' disabled={false} callback={nextQuestion} />
+    <React.Fragment>
+      <GlobalStyle />
+      <Wrapper>
+        <h1>Quiz</h1>
+        {
+          gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
+            <Button btnClass='start' text='Start' value='' disabled={false} callback={startQuiz} />
           ) : null
-      }
-    </div>
+        }
+        {!gameOver ? (<p className='score'>Score: {score}</p>) : null}
+        {loading && <p>Loading Question ...</p>}
+        {
+          !loading && !gameOver && (
+            <QuestionCard
+              questionNum={number + 1}
+              totalQuestions={TOTAL_QUESTIONS}
+              question={questions[number].question}
+              answers={questions[number].answers}
+              userAnswer={userAnswers ? userAnswers[number] : undefined}
+              callback={checkAnswer}
+            />
+          )
+        }
+        {
+          !loading && !gameOver && userAnswers.length === number + 1 && number !== TOTAL_QUESTIONS - 1 ?
+            (
+              <Button btnClass='next' text='Next Question' value='' disabled={false} callback={nextQuestion} />
+            ) : null
+        }
+      </Wrapper>
+    </React.Fragment>
   );
 }
 
