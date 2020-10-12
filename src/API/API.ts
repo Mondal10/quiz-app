@@ -9,6 +9,11 @@ import { Question } from '../Types/types';
 export const shuffleArray = (array: any[]) =>
   [...array].sort(() => Math.random() - 0.5);
 
+/**
+ * Fetch quiz data based on query
+ * @param amount Number
+ * @param difficulty String
+ */
 export const fetchQuizData = async (amount: number, difficulty: Difficulty) => {
   const endpoint = `https://opentdb.com/api.php?amount=${amount}&difficulty=${difficulty}&type=multiple`;
   const data = await (await fetch(endpoint)).json();

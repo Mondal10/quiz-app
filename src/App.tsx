@@ -9,6 +9,7 @@ import { Difficulty } from './Types/enums';
 import { QuestionState, AnswerObject } from './Types/types';
 
 // Components
+import Button from './Components/Button/Button';
 import QuestionCard from './Components/QuestionCard/QuestionCard';
 
 // Constants
@@ -81,7 +82,7 @@ const App = () => {
       <h1>Quiz</h1>
       {
         gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-          <button className='start' onClick={startQuiz}>Start</button>
+          <Button btnClass='start' text='Start' value='' disabled={false} callback={startQuiz} />
         ) : null
       }
       {!gameOver ? (<p className='score'>Score: {score}</p>) : null}
@@ -101,7 +102,7 @@ const App = () => {
       {
         !loading && !gameOver && userAnswers.length === number + 1 && number !== TOTAL_QUESTIONS - 1 ?
           (
-            <button className='next' onClick={nextQuestion}>Next Question</button>
+            <Button btnClass='next' text='Next Question' value='' disabled={false} callback={nextQuestion} />
           ) : null
       }
     </div>
