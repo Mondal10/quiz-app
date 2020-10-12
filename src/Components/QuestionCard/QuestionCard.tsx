@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Types
-import { AnswerObject } from '../../App';
+import { AnswerObject } from '../../Types/types';
 
 type QuestionProps = {
   question: string;
@@ -23,13 +23,13 @@ const QuestionCard: React.FC<QuestionProps> = ({
   return (
     <div>
       <p className='number'>Question: {questionNum} / {totalQuestions}</p>
-      <p>{question}</p>
+      <p dangerouslySetInnerHTML={{ __html: question }}></p>
       <div>
         {
           answers.map(answer => (
             <div key={answer}>
               <button disabled={!!userAnswer} value={answer} onClick={callback}>
-                <span>{answer}</span>
+                <span dangerouslySetInnerHTML={{ __html: answer }}></span>
               </button>
             </div>
           ))

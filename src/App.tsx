@@ -4,18 +4,12 @@ import './App.css';
 // API
 import { fetchQuizData } from './API/API';
 
-// Types
-import { Difficulty, QuestionState } from './API/API';
+// Types and Enums
+import { Difficulty } from './Types/enums';
+import { QuestionState, AnswerObject } from './Types/types';
 
 // Components
 import QuestionCard from './Components/QuestionCard/QuestionCard';
-
-export type AnswerObject = {
-  question: string;
-  answer: string;
-  correct: boolean;
-  correctAnswer: string;
-}
 
 // Constants
 const TOTAL_QUESTIONS = 10;
